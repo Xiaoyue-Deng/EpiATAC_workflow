@@ -2,7 +2,7 @@
 - **Status:** Concluded & Handover (18-03-2026)
 - **Author:** Xiaoyue Deng (Departure Date: 2026-03)
 - **Primary Data Source:** [10x Genomics EpiATAC dataset](https://www.10xgenomics.com/datasets/10k-human-pbmcs-atac-v2-chromium-x-2-standard)
-- **Link to repository:** [Github](https://github.com/Xiaoyue-Deng/triology_of_ad_scrnaseq)
+- **Link to repository:** [Github](https://github.com/Xiaoyue-Deng/EpiATAC_workflow)
 - **Computational Environment:** HPC + Local env
 
 ## 📌 2.Brief Info 
