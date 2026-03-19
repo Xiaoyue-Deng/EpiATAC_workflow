@@ -325,11 +325,12 @@ rna <- readRDS("C:/Users/denxiack/Documents/Complete_Helen_He/RDS_files_Xiaoyue_
 
 # fixing findTransferable anchors, source: https://github.com/satijalab/seurat/issues/8368
 # Making single layer of SCT to fed into this package...
+pbmc.merge <- PrepSCTFindMarkers(pbmc)
+rna.merge <- PrepSCTFindMarkers(rna)
+
 common_genes <- intersect(rownames(rna.merge), rownames(pbmc))
 print(length(common_genes))
 
-pbmc.merge <- PrepSCTFindMarkers(pbmc)
-rna.merge <- PrepSCTFindMarkers(rna)
 
 # Gives up on SCT because the anchors are v bad (98)
 DefaultAssay(rna.merge) <- "RNA"
@@ -361,7 +362,7 @@ sum(predicted.labels$prediction.score.max <= 0.5) / sum(length(predicted.labels$
 pbmc <- AddMetaData(object = pbmc, metadata = predicted.labels)  #added predicted names back to metadata
 plot1 <- DimPlot(object = pbmc,group.by = 'cell_type_manual',
                  label = TRUE,repel = TRUE) + 
-                  ggtitle('scATAC-seq')
+                  ggtitle('scATAC-seq + mLLmCellType')
 plot2 <- DimPlot(object = pbmc,
                  group.by = 'predicted.id',
                  label = TRUE,
@@ -371,7 +372,7 @@ plot2 <- DimPlot(object = pbmc,
 merge <- plot1 + plot2
 merge
 
-ggsave("scATAC_scRNA_Integration.png", plot = merge, height = 12, width = 8, dpi = 300)
+ggsave("scATAC_scRNA_Integration.png", plot = merge, height = 12, width = 20, dpi = 300)
 
 # ==== 🎃 Check differential accessible peaks between clusters ====
 summary(Idents(pbmc))
